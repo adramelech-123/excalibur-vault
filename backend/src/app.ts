@@ -1,6 +1,7 @@
 import "dotenv/config";
 import express, { NextFunction, Request, Response } from "express";
 import userRoutes from "./routes/user.routes"
+import accountRoutes from "./routes/account.routes"
 import morgan from "morgan"
 import createHttpError, {isHttpError} from "http-errors";
 import cors from "cors"
@@ -38,6 +39,7 @@ app.use(
 
 // Routes
 app.use("/api/users", userRoutes);
+app.use("/api/accounts", accountRoutes)
 
 
 // Endpoint does not exist -> Forward to Main Error Handler
