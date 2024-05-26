@@ -49,30 +49,51 @@ export const createAccount: RequestHandler<unknown, unknown, createAccBody, unkn
     const authenticatedUserId = req.session.userId;
 
     const title = req.body.acc_title
+    const accType = req.body.acc_type
     const email = req.body.acc_email
     const username = req.body.acc_username
     const password = req.body.acc_password
     const url = req.body.acc_url
     const image = req.body.acc_image
     const notes = req.body.acc_notes
+    const card_number = req.body.acc_card_number
+    const card_cvc = req.body.acc_card_cvc
 
     try {
         if(!title) {
             throw createHttpError(400, "Account must have a title!")
         }
 
-        const newAccount = await AccModel.create({
-            userId: authenticatedUserId,
-            acc_title: title,
-            acc_email: email,
-            acc_username: username,
-            acc_password: password,
-            acc_url: url,
-            acc_image: image,
-            acc_notes: notes
-        })
+        // const newAccount = await AccModel.create({
+        //     userId: authenticatedUserId,
+        //     acc_title: title,
+        //     acc_type: accType,
+        //     acc_email: email,
+        //     acc_username: username,
+        //     acc_password: password,
+        //     acc_url: url,
+        //     acc_image: image,
+        //     acc_notes: notes,
+        //     acc_card_number: card_number,
+        //     acc_card_cvc: card_cvc
+        // })
 
-        console.log(newAccount)
+        const newAccount = new AccModel({
+          userId: authenticatedUserId,
+          acc_title: title,
+          acc_type: accType,
+          acc_email: email,
+          acc_username: username,
+          acc_password: password,
+          acc_url: url,
+          acc_image: image,
+          acc_notes: notes,
+          acc_card_number: card_number,
+          acc_card_cvc: card_cvc,
+        });
+
+        await newAccount.validate()
+        await newAccount.save()
 
         res.status(201).json(newAccount)
     } catch (error) {
