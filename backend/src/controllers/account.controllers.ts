@@ -150,3 +150,32 @@ export const updateAccount: RequestHandler<
     next(error);
   }
 };
+
+
+export const deleteAccount: RequestHandler = async (req, res, next) => {
+  const accId = req.params.accId;
+  const authenticatedUserId = req.session.userId;
+
+  try {
+    
+    if (!mongoose.isValidObjectId(accId)) {
+      throw createHttpError(400, "Invalid account id");
+    }
+
+    const account = await AccModel.findById(accId).exec();
+
+    if (!account) {
+      throw createHttpError(404, "Account not found");
+    }
+
+    if (!account.userId.equals(authenticatedUserId)) {
+      throw createHttpError(401, "You cannot access this account");
+    }
+
+    await account.deleteOne()
+
+    res.sendStatus(204);
+  } catch (error) {
+    next(error);
+  }
+};
