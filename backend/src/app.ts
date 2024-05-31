@@ -8,6 +8,7 @@ import cors from "cors"
 import session from "express-session"
 import env from "./utils/validateEnv"
 import MongoStore from "connect-mongo";
+import { requiresAuth } from "./middleware/auth";
 
 
 const app = express();
@@ -39,7 +40,7 @@ app.use(
 
 // Routes
 app.use("/api/users", userRoutes);
-app.use("/api/accounts", accountRoutes)
+app.use("/api/accounts", requiresAuth, accountRoutes)
 
 
 // Endpoint does not exist -> Forward to Main Error Handler
