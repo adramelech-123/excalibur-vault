@@ -5,7 +5,6 @@ const accountSchema = new Schema(
     userId: { type: Schema.Types.ObjectId, required: true },
     acc_type: {
       type: String,
-      required: true,
       enum: ["password_accounts", "payment_cards"],
     },
     acc_title: { type: String, required: true },
@@ -20,7 +19,6 @@ const accountSchema = new Schema(
       validate: {
         validator: function (this: any) {
           if (this.acc_type === "payment_cards") {
-            console.log(!!this.acc_card_number)
             return !!this.acc_card_number;
           }
 
@@ -36,7 +34,7 @@ const accountSchema = new Schema(
           if (this.acc_type === "payment_cards") {
             return !!this.acc_card_cvc;
           }
-          return true; // This allows other types to pass validation
+          return true; 
         },
         message: "acc_cvc is required for payment_cards type!",
       },
