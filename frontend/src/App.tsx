@@ -1,9 +1,16 @@
+import NavBar from "./components/NavBar";
+import HomeView from "./views/HomeView";
+import { Container } from "react-bootstrap";
+import MainStyles from "./styles/Main.module.css"
 
 function App() {
 
   return (
     <>
-      <h1>Excalibur Vault</h1>
+      <NavBar />
+      <Container fluid className={`px-4 ${MainStyles.excaliburBG}`}>
+        <HomeView />
+      </Container>
     </>
   );
 }
