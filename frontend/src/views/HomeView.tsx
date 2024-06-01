@@ -4,7 +4,7 @@ import { Image } from "react-bootstrap"
 const HomeView = () => {
   return (
     <div className=" d-flex flex-column align-items-center justify-content-center my-lg-4 my-5">
-      <Image src="public/excalibur-home.gif" width={650} fluid alt="Excalibur-Home-Image" />
+      <Image src="/excalibur-home.gif" width={650} fluid alt="Excalibur-Home-Image" />
       <p className="text-primary fs-2 fw-bold">Welcome to</p>
       <p className={`${MainStyles.excaliburBlue} ${MainStyles.excaliburTitle}`}>
         EXCALIBUR
