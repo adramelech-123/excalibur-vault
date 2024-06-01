@@ -6,12 +6,12 @@ import MainStyles from "./styles/Main.module.css"
 function App() {
 
   return (
-    <>
+    <div className={`${MainStyles.excaliburBG}`}>
       <NavBar />
-      <Container fluid className={`px-4 ${MainStyles.excaliburBG}`}>
+      <Container fluid className={``}>
         <HomeView />
       </Container>
-    </>
+    </div>
   );
 }
 

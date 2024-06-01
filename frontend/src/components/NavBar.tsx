@@ -23,7 +23,7 @@ const NavBar = () => {
         className={`${NavStyles.whiteToggle}`}
       />
       <Navbar.Collapse id="main-navbar" className={`justify-content-end`}>
-        <Nav>
+        <Nav className="gap-4">
           <Nav.Link className="text-white fs-4">Login</Nav.Link>
           <Nav.Link className="text-white fs-4">Register</Nav.Link>
         </Nav>
