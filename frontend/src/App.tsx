@@ -28,7 +28,7 @@ function App() {
         )}
 
         {showLoginModal && (
-          <LoginModal onDismiss={() => setShowLoginModal(false)}/>
+          <LoginModal onDismiss={() => setShowLoginModal(false)} onLoginSuccessful={(user) => console.log(user)}/>
         )}
       </BrowserRouter>
     </div>

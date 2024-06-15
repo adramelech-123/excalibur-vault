@@ -44,3 +44,27 @@ export async function signUp(credentials:SignUpCredentials): Promise<User> {
 
     return response?.json()
 }
+
+
+export interface LoginCredentials {
+  username: string;
+  password: string;
+}
+
+export async function login(credentials:LoginCredentials): Promise<User> {
+    const response = await fetchData("http://localhost:5000/api/users/login",
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(credentials)
+        }
+    )
+
+    return response?.json()
+}
+
+export async function logout() {
+  await fetchData("http://localhost:5000/api/users/logout", { method: "POST" });
+}
